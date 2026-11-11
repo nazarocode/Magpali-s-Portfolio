@@ -37,6 +37,72 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-achievement-flip]').forEach(function (card) {
+      var pointerStartX = 0;
+      var pointerStartTime = 0;
+      var startingAngle = 0;
+      var dragging = false;
+      var suppressClick = false;
+
+      function setFlipped(flipped) {
+        card.classList.toggle('is-flipped', flipped);
+        card.setAttribute('aria-pressed', String(flipped));
+        card.setAttribute('aria-label', flipped ? card.dataset.flipBackLabel : card.dataset.flipFrontLabel);
+        card.style.setProperty('--flip-angle', flipped ? '180deg' : '0deg');
+      }
+
+      card.addEventListener('pointerdown', function (event) {
+        if (event.button !== 0) return;
+        pointerStartX = event.clientX;
+        pointerStartTime = performance.now();
+        startingAngle = card.classList.contains('is-flipped') ? 180 : 0;
+        dragging = true;
+        card.classList.add('is-dragging');
+        card.setPointerCapture(event.pointerId);
+      });
+
+      card.addEventListener('pointermove', function (event) {
+        if (!dragging) return;
+        var dragAngle = Math.max(0, Math.min(180, startingAngle + event.clientX - pointerStartX));
+        card.style.setProperty('--flip-angle', dragAngle + 'deg');
+      });
+
+      card.addEventListener('pointerup', function (event) {
+        if (!dragging) return;
+        dragging = false;
+        card.classList.remove('is-dragging');
+        var distance = event.clientX - pointerStartX;
+        var elapsed = performance.now() - pointerStartTime;
+        var flicked = Math.abs(distance) > 20 && elapsed < 220;
+        var moved = Math.abs(distance) > 8;
+        var currentlyFlipped = startingAngle === 180;
+        var shouldFlip = Math.abs(distance) > 48 || flicked
+          ? (currentlyFlipped ? distance < 0 : distance > 0)
+          : currentlyFlipped;
+        setFlipped(shouldFlip);
+        if (moved) {
+          suppressClick = true;
+          window.setTimeout(function () { suppressClick = false; }, 0);
+        }
+      });
+
+      card.addEventListener('pointercancel', function () {
+        if (!dragging) return;
+        dragging = false;
+        card.classList.remove('is-dragging');
+        setFlipped(startingAngle === 180);
+      });
+
+      card.addEventListener('click', function (event) {
+        if (suppressClick) {
+          event.preventDefault();
+          suppressClick = false;
+          return;
+        }
+        setFlipped(!card.classList.contains('is-flipped'));
+      });
+    });
+
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.querySelectorAll('[data-profile-effect]').forEach(function (card) {
         card.addEventListener('pointermove', function (event) {

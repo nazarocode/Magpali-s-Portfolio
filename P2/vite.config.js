@@ -15,6 +15,7 @@ export default defineConfig({
         index: resolve(root, 'index.html'),
         personal: resolve(root, 'personal.html'),
         achievements: resolve(root, 'achievements.html'),
+        certificate: resolve(root, 'certificate.html'),
         parents: resolve(root, 'parents.html'),
         surprise: resolve(root, 'surprise.html')
       },
