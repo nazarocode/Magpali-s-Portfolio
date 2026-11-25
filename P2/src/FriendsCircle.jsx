@@ -2,13 +2,10 @@ import { useState } from 'react';
 import './FatherFlipCard.css';
 import './FriendsCircle.css';
 
-const birthdayPhoto = new URL('../friends-birthday.jpg', import.meta.url).href;
-const nightPhoto = new URL('../friends-night.jpg', import.meta.url).href;
-const trioPhoto = new URL('../friends-trio.jpg', import.meta.url).href;
 const baguioFriendsPhoto = new URL('../friends-baguio-1.jpg', import.meta.url).href;
 const baguioFriendsPhotoAlt = new URL('../friends-baguio-2.jpg', import.meta.url).href;
 
-const FriendFlipCard = ({ frontPhoto, backPhoto, alt, message, backLabel, frontLabel = 'MY CIRCLE', backEyebrow = 'FRIENDS', backTitle = 'My circle of friends' }) => {
+const FriendFlipCard = ({ frontPhoto, backPhoto, alt, message, backLabel, frontLabel = 'FRIENDS', backEyebrow = 'FRIENDS', backTitle = 'My circle of friends' }) => {
   const [flipped, setFlipped] = useState(false);
 
   const updateTilt = event => {
@@ -82,22 +79,6 @@ const FriendsCircle = () => (
       <p className="lead">Good times are even better with the people who make every memory brighter.</p>
     </header>
     <div className="friends-circle__grid">
-      <FriendFlipCard
-        frontPhoto={birthdayPhoto}
-        backPhoto={nightPhoto}
-        alt="Friends gathered around a birthday celebration"
-        message="My friends have been by my side since Grade 8, making me happy and supporting me through everything. Even though we have grown and changed, some have left our friend group, and I miss them."
-        backLabel="my friends"
-      />
-      <FriendFlipCard
-        frontPhoto={trioPhoto}
-        backPhoto={trioPhoto}
-        alt="Three friends celebrating their school achievements together"
-        message="This is my trio of friends from Luciano Millan National High School (LMNHS) in Asingan, Pangasinan. I met them in Grade 10, after my father transferred me to LMNHS."
-        backLabel="my trio of friends"
-        frontLabel="MY TRIO"
-        backTitle="MY TRIO"
-      />
       <FriendFlipCard
         frontPhoto={baguioFriendsPhoto}
         backPhoto={baguioFriendsPhotoAlt}

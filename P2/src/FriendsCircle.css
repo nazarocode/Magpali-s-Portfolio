@@ -39,7 +39,8 @@
 
 .friends-circle__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 280px);
+  justify-content: center;
   gap: clamp(1rem, 3vw, 2rem);
   max-width: 840px;
   margin: 0 auto;

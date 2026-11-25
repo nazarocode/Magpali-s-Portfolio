@@ -450,7 +450,7 @@ blockquote { margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--
 }
 .family-page main {
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: .5rem;
   width: min(1500px, 100%);
   max-width: 1500px;
@@ -464,27 +464,37 @@ blockquote { margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--
 .family-page .page-hero .eyebrow { font-size: clamp(1rem, 1.4vw, 1.2rem); }
 .family-page .page-hero .title { margin: .2rem 0; font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .family-page .page-hero .lead { max-width: 1100px; margin: .35rem auto 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.35; }
-.family-page .two-col {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.family-page .family-members {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(100px, 150px) minmax(0, 1fr);
   align-items: center;
   gap: 1rem;
   min-height: 0;
 }
+.family-page #father-card-root { grid-column: 1; grid-row: 1; }
+.family-page #brother-card-root { grid-column: 2; grid-row: 1; }
+.family-page #mother-card-root { grid-column: 3; grid-row: 1; }
 .family-page .father-card-root { min-height: 0; }
 .family-page .father-flip-card-wrap { width: min(100%, 380px); }
-.family-page .father-flip-card { aspect-ratio: 16 / 9; }
-.family-page .two-col .father-flip-card__eyebrow { font-size: .55rem; }
-.family-page .two-col .father-flip-card__name { font-size: 1.35rem; }
-.family-page .two-col .father-flip-card__role { font-size: .74rem; }
-.family-page .two-col .father-flip-card__message,
-.family-page .two-col .father-flip-card__quote { font-size: .68rem; line-height: 1.35; }
-.family-page .two-col .father-flip-card__hint { font-size: .54rem; }
+.family-page #father-card-root .father-flip-card-wrap,
+.family-page #mother-card-root .father-flip-card-wrap { width: min(100%, 30svh); }
+.family-page #father-card-root .father-flip-card,
+.family-page #mother-card-root .father-flip-card { aspect-ratio: 1 / 1; }
+.family-page .brother-flip-card-wrap { width: min(100%, 150px); }
+.family-page .brother-flip-card-wrap .father-flip-card { aspect-ratio: 3 / 4; }
+.family-page .brother-flip-card-wrap .father-flip-card__face > img { object-position: 50% 35%; }
+.family-page .family-members .father-flip-card__eyebrow { font-size: .55rem; }
+.family-page .family-members .father-flip-card__name { font-size: .95rem; }
+.family-page .family-members .father-flip-card__role { font-size: .74rem; }
+.family-page .family-members .father-flip-card__message,
+.family-page .family-members .father-flip-card__quote { font-size: .68rem; line-height: 1.35; }
+.family-page .family-members .father-flip-card__hint { font-size: .54rem; }
 .family-page #friends-circle-root { min-height: 0; }
 .family-page .friends-circle {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
   gap: .5rem;
-  height: 100%;
+  height: auto;
   min-height: 0;
   margin-top: 0;
 }
@@ -497,7 +507,7 @@ blockquote { margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--
 .family-page .friends-circle__heading .section-title::after { margin: .3rem auto 0; }
 .family-page .friends-circle__heading .lead { max-width: 1000px; margin: .3rem auto 0; font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.3; }
 .family-page .friends-circle__grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: .75rem;
   width: 100%;
@@ -506,7 +516,7 @@ blockquote { margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--
   margin: 0;
 }
 .family-page .friend-memory-card { width: min(100%, 480px); aspect-ratio: 16 / 9; }
-.family-page .friend-memory-card .father-flip-card__eyebrow { font-size: .62rem; }
+.family-page .friend-memory-card .father-flip-card__eyebrow { font-size: .5rem; }
 .family-page .friend-memory-card .father-flip-card__role { font-size: .78rem; }
 .family-page .friend-memory-card .father-flip-card__message { font-size: .68rem; line-height: 1.35; }
 .family-page .friend-memory-card .father-flip-card__hint { font-size: .54rem; }
@@ -617,6 +627,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .personal-hero-copy { text-align: center; }
   .personal-hero-copy .lead { margin: 1rem auto; }
   .hero { position: relative; padding-top: clamp(19.5rem, 68vw, 22.5rem); }
+  .homepage-page .marquee { margin: 1.5rem 0 .75rem; }
   .hero .lanyard-mount {
     position: absolute;
     top: 0;
@@ -673,6 +684,10 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
     min-height: 0;
     padding: .5rem 0;
   }
+  .homepage-page .hero .title { margin: .25rem 0; }
+  .homepage-page .hero .lead { margin: .5rem 0; }
+  .homepage-page .hero .buttons { margin-top: .5rem; }
+  .homepage-page .hero .social-links { margin-top: .15rem; }
   .homepage-page .marquee {
     margin: 0 0 .4rem;
   }
@@ -731,8 +746,9 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   grid-template-rows: minmax(0, 1fr) auto;
   gap: .75rem;
   width: 100%;
+  height: 100%;
   min-height: 0;
-  margin: auto;
+  margin: 0;
 }
 .personal-page .personal-slide {
   display: grid;
@@ -754,7 +770,7 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   margin: 0;
   padding: 0;
 }
-.personal-page .personal-hero #profile-card-root { width: min(100%, 360px); margin: 0; }
+.personal-page .personal-hero #profile-card-root { width: min(100%, 320px); margin: 0; }
 .personal-page .personal-hero-copy {
   align-self: start;
   transform: translateY(clamp(1rem, 3vh, 2rem));
@@ -857,7 +873,7 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
 .personal-page .personal-hobbies .personal-detail-grid .card h2 { font-size: clamp(1rem, 1.8vw, 1.35rem); }
 @media (min-width: 641px) and (max-width: 1000px) {
   .personal-page .personal-hero { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 1.5rem; }
-  .personal-page .personal-hero #profile-card-root { width: min(100%, 300px); }
+  .personal-page .personal-hero #profile-card-root { width: min(100%, 280px); }
   .personal-page .personal-story-education-content { grid-template-rows: minmax(0, .55fr) minmax(0, 1.45fr); }
   .personal-page .personal-story-education .personal-detail-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -905,8 +921,6 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: .75rem;
-  position: relative;
-  top: clamp(1.5rem, 5vh, 3.5rem);
 }
 .personal-page .personal-carousel-controls .btn {
   min-width: 7rem;
@@ -936,7 +950,7 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
     gap: .75rem;
     text-align: left;
   }
-  .personal-page .personal-hero #profile-card-root { width: 100%; }
+  .personal-page .personal-hero #profile-card-root { width: 90%; justify-self: center; }
   .personal-page .personal-profile-card { width: 100%; padding: 5px; border-radius: 1rem; }
   .personal-page .personal-profile-card__portrait { border-radius: .75rem; }
   .personal-page .personal-profile-card__identity { right: .6rem; bottom: .7rem; left: .6rem; }
@@ -998,8 +1012,10 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   .family-page .page-hero .eyebrow { font-size: .9rem; }
   .family-page .page-hero .title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   .family-page .page-hero .lead { font-size: .8rem; line-height: 1.25; }
-  .family-page .two-col { gap: .35rem; }
-  .family-page .father-flip-card { aspect-ratio: 4 / 3; }
+  .family-page .family-members {
+    grid-template-columns: minmax(0, 1fr) minmax(72px, .55fr) minmax(0, 1fr);
+    gap: .35rem;
+  }
   .family-page .friends-circle { gap: .25rem; }
   .family-page .friends-circle__heading .eyebrow { font-size: .9rem; }
   .family-page .friends-circle__heading .section-title { margin: .05rem auto .15rem; font-size: 1.6rem; }
@@ -1010,13 +1026,13 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   .family-page .father-flip-card__front-copy,
   .family-page .father-flip-card__back-copy { right: .4rem; bottom: .4rem; left: .4rem; gap: .15rem; }
   .family-page .father-flip-card__eyebrow { font-size: .48rem; }
-  .family-page .two-col .father-flip-card__eyebrow { font-size: .38rem; }
-  .family-page .two-col .father-flip-card__name { font-size: .72rem; }
-  .family-page .two-col .father-flip-card__role { font-size: .46rem; }
-  .family-page .two-col .father-flip-card__message,
-  .family-page .two-col .father-flip-card__quote { font-size: .4rem; line-height: 1.08; }
-  .family-page .two-col .father-flip-card__hint { margin-top: .1rem; font-size: .34rem; }
-  .family-page .friend-memory-card .father-flip-card__eyebrow { font-size: .5rem; }
+  .family-page .family-members .father-flip-card__eyebrow { font-size: .38rem; }
+  .family-page .family-members .father-flip-card__name { font-size: .58rem; }
+  .family-page .family-members .father-flip-card__role { font-size: .46rem; }
+  .family-page .family-members .father-flip-card__message,
+  .family-page .family-members .father-flip-card__quote { font-size: .4rem; line-height: 1.08; }
+  .family-page .family-members .father-flip-card__hint { margin-top: .1rem; font-size: .34rem; }
+  .family-page .friend-memory-card .father-flip-card__eyebrow { font-size: .42rem; }
   .family-page .friend-memory-card .father-flip-card__role { font-size: .58rem; }
   .family-page .friend-memory-card .father-flip-card__message { font-size: .5rem; line-height: 1.15; }
   .family-page .friend-memory-card .father-flip-card__hint { font-size: .42rem; }
@@ -1053,13 +1069,15 @@ html:has(.personal-page) { height: 100%; overflow: hidden; }
   .family-page .page-hero .lead { font-size: 1rem; }
   .family-page .father-flip-card,
   .family-page .friend-memory-card { aspect-ratio: 2 / 1; }
+  .family-page #father-card-root .father-flip-card,
+  .family-page #mother-card-root .father-flip-card { aspect-ratio: 1 / 1; }
   .family-page .friends-circle__heading .eyebrow { font-size: 1rem; }
   .family-page .friends-circle__heading .section-title { font-size: 2rem; }
   .family-page .friends-circle__heading .lead { font-size: .95rem; }
   .family-page .quote { padding: .45rem .75rem; font-size: 1rem; }
 }
 @media (min-width: 641px) and (max-height: 900px) {
-  .family-page main { grid-template-rows: auto minmax(0, .9fr) minmax(0, 1fr) auto; }
+  .family-page main { grid-template-rows: auto minmax(0, 1fr) auto; }
   .family-page .page-hero { padding-bottom: .15rem; }
   .family-page .page-hero .title { font-size: clamp(2rem, 3vw, 2.7rem); }
   .family-page .page-hero .lead { font-size: 1rem; line-height: 1.25; }

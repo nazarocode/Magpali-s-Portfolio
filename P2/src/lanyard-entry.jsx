@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
-const profileImage = new URL('../profile-logo.png', import.meta.url).href;
+const profileImage = new URL('../personal-profile-card.png', import.meta.url).href;
 const root = document.getElementById('lanyard-root');
 
 if (root) {

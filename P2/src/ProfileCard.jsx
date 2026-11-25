@@ -37,7 +37,7 @@ const ProfileCard = () => {
       aria-label="Profile card for Wintonia Magpali"
     >
       <div className="personal-profile-card__portrait">
-        <img src={new URL('../personal-profile.jpg', import.meta.url).href} alt="Wintonia Magpali" />
+        <img src={new URL('../personal-profile-card.png', import.meta.url).href} alt="Wintonia Magpali in a black suit taking a mirror selfie" />
         <div className="personal-profile-card__shine" aria-hidden="true" />
         <div className="personal-profile-card__identity">
           <span className="personal-profile-card__eyebrow">PERSONAL PROFILE</span>
